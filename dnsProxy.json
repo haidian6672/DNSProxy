@@ -1,0 +1,43 @@
+{
+    "service" : {
+        "daemon" : false,
+        "port" : 53,
+        "loglv" : "debug",
+	"protocol" : "all",
+        "logpath" : "stderr",
+        "pidfile" : "./cleandns.pid"
+    }, 
+    "default" : {
+        "name" : "default",
+        "mode" : "redirect",
+    	"server" : "114.114.114.114",
+	"protocol" : "inherit"
+    },
+    "filters" :
+    [
+        {
+            "name" : "testList",
+            "mode" : "redirect",
+            "server" : "114.114.114.114",
+            "rulelist" : [
+                "*github.com",
+                "*bing.com"
+            ]
+        },
+        {
+            "name" : "testLocal",
+            "mode" : "local",
+            "domain" : "testLocal.com",
+            "A" : [
+                {
+                    "sub" : "testA",
+                    "ip": ["11.22.33.44", "22.33.44.55"]
+                },
+                {
+                    "sub": "testB",
+                    "ip": "33.44.55.66"
+                }
+            ]
+        }
+    ]
+}
